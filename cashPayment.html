@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cash Payment | BrewHeaven Coffee</title>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #fffdf7;
+    padding: 2rem;
+    color: #3c2f2f;
+  }
+
+  .container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  .total-box {
+    background: #f2e5d5;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  label {
+    font-weight: 600;
+    display: block;
+    margin-top: 1rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.7rem;
+    margin-top: 0.4rem;
+    border-radius: 5px;
+    border: 1px solid #d9a86c;
+    font-size: 1rem;
+  }
+
+  .btn {
+    background: #d9a86c;
+    color: white;
+    border: none;
+    padding: 0.9rem;
+    width: 100%;
+    margin-top: 1.7rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .btn:hover {
+    background: #c38e58;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Cash Payment</h2>
+
+  <div class="total-box">
+    Total to Pay: $<span id="payTotal">0.00</span>
+  </div>
+
+  <label>Your Name</label>
+  <input type="text" id="custName" placeholder="John Doe">
+
+  <button class="btn" onclick="processCashPayment()">Pay with Cash</button>
+</div>
+
+<script>
+  // Show total from previous page
+  document.getElementById("payTotal").textContent =
+    localStorage.getItem("orderTotal") || "0.00";
+
+  async function processCashPayment() {
+    const name = document.getElementById("custName").value.trim();
+    const amount = localStorage.getItem("orderTotal");
+
+    if (!name) {
+      alert("Please enter your name.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name,
+          amount: amount,
+          method: "cash"
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert("Payment recorded! Thank you ☕");
+        // Save paid total for receipt
+        localStorage.setItem("paidTotal", amount);
+        window.location.href = "receipt.html";
+      } else {
+        alert("Failed to record payment. Try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Could not reach the server.");
+    }
+  }
+</script>
+
+</body>
+</html>

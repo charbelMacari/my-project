@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The GoldenCup Coffee</title>
+  <meta name="description" content="The GoldenCup Coffee — freshly brewed happiness and signature coffee blends.">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #fffdf7;
+      color: #3c2f2f;
+    }
+
+    header {
+      background-color: #0f0e0e;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    header nav a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+
+    header nav a:hover { color: #d9a86c; }
+
+    .hero {
+      background: url('im.webp') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 12rem 2rem;
+      position: relative;
+    }
+
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+
+    .btn {
+      background-color: #d9a86c;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      margin: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .btn:hover { background-color: #c38e58; transform: scale(1.05); }
+
+    .specials { text-align: center; padding: 4rem 2rem; }
+    .specials h2 { margin-bottom: 2rem; }
+    .drinks { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+
+    .drink {
+      width: 250px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      background: white;
+    }
+
+    .drink img { width: 100%; height: 200px; object-fit: cover; }
+    .drink h3 { margin: 1rem 0 0.5rem; }
+
+    footer {
+      background-color: #2d1e1f;
+      color: #fff;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      margin-top: 4rem;
+    }
+    footer p { margin: 0.5rem 0; font-size: 0.95rem; }
+
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .social-links a img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #d9a86c;
+    }
+
+    /* Chat button */
+    .chat-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #d9a86c;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+    .chat-btn:hover { transform: scale(1.1); background-color: #c38e58; }
+
+    /* Chat window */
+    .chat-window {
+      position: fixed;
+      bottom: 100px;
+      right: 25px;
+      width: 300px;
+      max-height: 400px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    .chat-header {
+      background: #2d1e1f;
+      color: #fff;
+      padding: 0.8rem;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 0.8rem;
+      overflow-y: auto;
+      font-size: 0.9rem;
+    }
+
+    .chat-messages p {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border-radius: 5px;
+    }
+
+    .chat-messages .user { background-color: #d9a86c; color: #fff; text-align: right; }
+    .chat-messages .bot { background-color: #eee; text-align: left; }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+    .chat-input input {
+      flex: 1;
+      border: none;
+      padding: 0.8rem;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .chat-input button {
+      border: none;
+      background: #d9a86c;
+      color: #fff;
+      padding: 0 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    .chat-input button:hover { background: #c38e58; }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h2>☕ The GoldenCup</h2>
+    <nav>
+      <a href="#">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="rewards.html">Rewards</a>
+      <a href="contact.html">Contact</a>
+      <a href="order.html" class="btn">Order Now</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Freshly Brewed Happiness</h1>
+    <p>Start your day with our signature roast — or let GoldCupBot recommend your perfect cup.</p>
+    <a href="order.html" class="btn">☕ Order Online</a>
+    <button class="btn" id="openChatBtn">🤖 Ask GoldCupBot</button>
+  </section>
+
+  <section class="specials">
+    <h2>Customer Favorites</h2>
+    <div class="drinks">
+      <div class="drink">
+        <img src="caramel latte.webp" alt="Latte">
+        <h3>Caramel Latte</h3>
+        <p>$4.50</p>
+      </div>
+      <div class="drink">
+        <img src="Vanilla Cold Brew.webp" alt="Cold Brew">
+        <h3>Vanilla Cold Brew</h3>
+        <p>$4.00</p>
+      </div>
+      <div class="drink">
+        <img src="Double Espresso.webp" alt="Espresso">
+        <h3>Double Espresso</h3>
+        <p>$3.00</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 The GoldenCup | 123 Bean Street, Roast City</p>
+    <p>Follow us</p>
+    <div class="social-links">
+      <a href="https://www.instagram.com/" target="_blank"><img src="insta.webp" alt="Instagram"></a>
+      <a href="https://www.facebook.com/" target="_blank"><img src="facebook.webp" alt="Facebook"></a>
+      <a href="https://www.tiktok.com/" target="_blank"><img src="tiktok.webp" alt="TikTok"></a>
+    </div>
+  </footer>
+
+  <button class="chat-btn" id="chatBtn">💬</button>
+
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">GoldCupBot ☕</div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Ask me anything...">
+      <button id="sendBtn">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBtn = document.getElementById('chatBtn');
+    const chatWindow = document.getElementById('chatWindow');
+    const openChatBtn = document.getElementById('openChatBtn');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    chatBtn.addEventListener('click', () => {
+      chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+    });
+    openChatBtn.addEventListener('click', () => {
+      chatWindow.style.display = 'flex';
+    });
+
+    async function sendMessage() {
+      const msg = chatInput.value.trim();
+      if (!msg) return;
+
+      const userMsg = document.createElement('p');
+      userMsg.className = 'user';
+      userMsg.textContent = msg;
+      chatMessages.appendChild(userMsg);
+
+      chatInput.value = '';
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      try {
+        const response = await fetch("http://localhost:3000/goldencupbot", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: msg })
+        });
+
+        const data = await response.json();
+        const botText = data.choices[0].message.content;
+
+        const botMsg = document.createElement('p');
+        botMsg.className = 'bot';
+        botMsg.textContent = botText;
+        chatMessages.appendChild(botMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      } catch (err) {
+        const botMsg = document.createElement('p');
+        botMsg.className = 'bot';
+        botMsg.textContent = "⚠️ Cannot reach GoldCupBot server.";
+        chatMessages.appendChild(botMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        console.error(err);
+      }
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+
+</body>
+</html>

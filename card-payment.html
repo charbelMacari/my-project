@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Card Payment | BrewHeaven Coffee</title>
+
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #fffdf7;
+    padding: 2rem;
+    color: #3c2f2f;
+  }
+
+  .container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .total-box {
+    background: #f2e5d5;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  label {
+    font-weight: 600;
+    display: block;
+    margin-top: 1rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.7rem;
+    margin-top: 0.4rem;
+    border-radius: 5px;
+    border: 1px solid #d9a86c;
+    font-size: 1rem;
+  }
+
+  .btn {
+    background: #d9a86c;
+    color: white;
+    border: none;
+    padding: 0.9rem;
+    width: 100%;
+    margin-top: 1.7rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .btn:hover {
+    background: #c38e58;
+  }
+
+  .error {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+  }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+  <h2>Card Payment</h2>
+
+  <div class="total-box">
+    Total to Pay: $<span id="payTotal">0.00</span>
+  </div>
+
+  <label>Name on Card</label>
+  <input id="cardName" type="text" placeholder="John Doe">
+
+  <label>Card Number</label>
+  <input id="cardNumber" maxlength="16" placeholder="1234567812345678">
+  <p id="numErr" class="error"></p>
+
+  <label>Expiration Date</label>
+  <input id="expDate" placeholder="MM/YY">
+  <p id="expErr" class="error"></p>
+
+  <label>CVV</label>
+  <input id="cvv" maxlength="3" placeholder="123">
+  <p id="cvvErr" class="error"></p>
+
+  <button class="btn" onclick="processPayment()">Pay Now</button>
+</div>
+
+<script>
+// Show total from previous page
+document.getElementById("payTotal").textContent =
+  localStorage.getItem("orderTotal") || "0.00";
+
+async function processPayment() {
+  const name = document.getElementById("cardName").value.trim();
+  const num = document.getElementById("cardNumber").value.trim();
+  const exp = document.getElementById("expDate").value.trim();
+  const cvv = document.getElementById("cvv").value.trim();
+
+  let valid = true;
+
+  // Reset errors
+  document.getElementById("numErr").textContent = "";
+  document.getElementById("expErr").textContent = "";
+  document.getElementById("cvvErr").textContent = "";
+
+  // Validate card number
+  if (num.length !== 16 || isNaN(num)) {
+    document.getElementById("numErr").textContent = "Card number must be 16 digits.";
+    valid = false;
+  }
+
+  // Validate date
+  if (!/^\d{2}\/\d{2}$/.test(exp)) {
+    document.getElementById("expErr").textContent = "Invalid format (MM/YY).";
+    valid = false;
+  }
+
+  // Validate CVV
+  if (cvv.length !== 3 || isNaN(cvv)) {
+    document.getElementById("cvvErr").textContent = "CVV must be 3 digits.";
+    valid = false;
+  }
+
+  if (!valid) return;
+
+  const total = localStorage.getItem("orderTotal") || "0.00";
+
+  // Save total for receipt
+  localStorage.setItem("paidTotal", total);
+
+  // ---- SEND PAYMENT TO SERVER ---- //
+  try {
+    const response = await fetch("http://localhost:3000/payment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        amount: total,
+        method: "card"
+      })
+    });
+
+    const result = await response.json();
+
+    if (!result.success) {
+      alert("Payment saved failed.");
+      return;
+    }
+
+    // Redirect to receipt
+    window.location.href = "receipt.html";
+
+  } catch (error) {
+    console.error(error);
+    alert("Server connection error.");
+  }
+}
+</script>
+
+</body>
+</html>

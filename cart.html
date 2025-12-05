@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrewHeaven Coffee | Your Cart</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #fffdf7;
+      color: #3c2f2f;
+    }
+    header {
+      background-color: #2d1e1f;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+    header nav a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+    header nav a:hover { color: #d9a86c; }
+    .btn {
+      background-color: #d9a86c;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 0.8rem 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .btn:hover { background-color: #c38e58; }
+
+    .hero {
+      background: url('cart-banner.webp') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 5rem 1rem;
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+
+    .cart-section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .cart-table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 80%;
+      max-width: 800px;
+    }
+    .cart-table th, .cart-table td {
+      border-bottom: 1px solid #ddd;
+      padding: 1rem;
+      text-align: left;
+    }
+    .cart-table th {
+      background-color: #f5e6d3;
+      color: #3c2f2f;
+    }
+    .cart-total {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #d9a86c;
+    }
+    footer {
+      background-color: #2d1e1f;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>☕ BrewHeaven Coffee</h2>
+    <nav>
+      <a href="coffee.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="rewards.html">Rewards</a>
+      <a href="contact.html">Contact</a>
+      <a href="order.html" class="btn">Order Now</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Your Cart</h1>
+    <p>Review your order before checkout.</p>
+  </section>
+
+  <section class="cart-section">
+    <table class="cart-table" id="cart-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody id="cart-body">
+        <!-- Items will appear here -->
+      </tbody>
+    </table>
+
+    <p class="cart-total" id="total">Total: $0.00</p>
+    <button class="btn" onclick="checkout()">Proceed to Checkout</button>
+    <button class="btn" style="background:#b85c5c;" onclick="clearCart()">Clear Cart</button>
+  </section>
+
+  <footer>
+    <p>© 2025 BrewHeaven Coffee | 123 Bean Street, Roast City</p>
+    <p>Follow us: ☕ Instagram | Facebook | TikTok</p>
+  </footer>
+<script src="script.js"></script>
+ 
+</body>
+</html>

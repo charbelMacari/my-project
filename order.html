@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The GoldenCup | Order</title>
+  <style>
+    body { font-family: 'Poppins', sans-serif; margin:0; background-color:#fffdf7; color:#3c2f2f; }
+    header { background-color: #0f0e0e; color:#fff; display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; }
+    header nav a { color:#fff; margin:0 1rem; text-decoration:none; }
+    header nav a:hover { color:#d9a86c; }
+    .container { max-width:1000px; margin:2rem auto; padding:0 1rem; }
+    h1 { text-align:center; margin-bottom:2rem; }
+    .menu-grid { display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:2rem; }
+    .menu-item { background:white; border-radius:8px; padding:1rem; flex:1 1 150px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+    .menu-item h3 { margin:0.5rem 0; }
+    .menu-item p { margin:0.5rem 0; font-size:0.9rem; color:#5a4b4b; }
+    .menu-item .price { font-weight:bold; color:#d9a86c; margin-bottom:0.5rem; }
+    .btn { background-color:#d9a86c; color:white; border:none; border-radius:5px; padding:0.5rem 1rem; cursor:pointer; font-weight:600; margin:0.2rem; }
+    .btn:hover { background-color:#c38e58; }
+    #cart-table { width:100%; border-collapse:collapse; table-layout:fixed; margin-bottom:1rem; }
+    #cart-table th, #cart-table td { border:1px solid #d9a86c; padding:0.75rem; text-align:center; vertical-align:middle; word-wrap:break-word; }
+    #cart-table th { background-color:#f2e5d5; }
+    #cart-table img { width:50px; height:50px; object-fit:cover; border-radius:5px; display:block; margin:0 auto; cursor:pointer; }
+    #cart-table th:nth-child(1), #cart-table td:nth-child(1) { width:40%; }
+    #cart-table th:nth-child(2), #cart-table td:nth-child(2) { width:10%; }
+    #cart-table th:nth-child(3), #cart-table td:nth-child(3) { width:15%; }
+    #cart-table th:nth-child(4), #cart-table td:nth-child(4) { width:15%; }
+    #cart-table th:nth-child(5), #cart-table td:nth-child(5) { width:10%; }
+    .total { text-align:right; font-size:1.25rem; font-weight:bold; margin-bottom:1rem; }
+    .payment-methods { display:flex; gap:1rem; margin-bottom:2rem; }
+    .payment-methods label { display:flex; align-items:center; gap:0.3rem; font-weight:600; }
+    footer { background-color:#2d1e1f; color:#fff; text-align:center; padding:2.5rem 1rem; margin-top:4rem; }
+    footer p { margin:0.5rem 0; font-size:0.95rem; }
+    .social-links { margin-top:1rem; display:flex; justify-content:center; gap:1.5rem; }
+    .social-links a { display:inline-block; width:45px; height:45px; border-radius:50%; overflow:hidden; background-color:#fff; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .social-links a img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+    .social-links a:hover { transform: scale(1.1); box-shadow:0 0 10px #d9a86c; }
+    .modal { display:none; position:fixed; z-index:10; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.7); }
+    .modal-content { margin:10% auto; display:block; max-width:400px; border-radius:10px; }
+    .modal-content img { width:100%; border-radius:10px; }
+    .close { position:absolute; top:20px; right:35px; color:#fff; font-size:40px; font-weight:bold; cursor:pointer; }
+  </style>
+</head>
+<body>
+<header>
+  <h2>☕ The GoldenCup</h2>
+  <nav>
+    <a href="coffee.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="order.html" class="btn">Order Now</a>
+  </nav>
+</header>
+
+<div class="container">
+  <h1>Place Your Order</h1>
+
+  <!-- Menu Items -->
+  <div class="menu-grid" id="menu-grid"></div>
+
+  <!-- Order Table -->
+  <h2>Your Cart</h2>
+  <table id="cart-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+    <tbody id="cart-body"></tbody>
+  </table>
+
+  <div class="total">Total: $<span id="total">0.00</span></div>
+
+  <!-- Payment -->
+  <div class="payment-methods">
+    <label><input type="radio" name="payment" value="card" checked> Pay by Card</label>
+    <label><input type="radio" name="payment" value="cash"> Pay by Cash</label>
+  </div>
+
+  <button class="btn" onclick="placeOrder()">Place Order</button>
+</div>
+
+<!-- Modal for larger image -->
+<div id="imgModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <div class="modal-content" id="modalContent"></div>
+</div>
+
+<footer>
+  <p>© 2025 The GoldenCup | 123 Bean Street, Roast City</p>
+  <p>Follow us</p>
+  <div class="social-links">
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><img src="insta.webp" alt="Instagram"></a>
+    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><img src="facebook.webp" alt="Facebook"></a>
+    <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer"><img src="tiktok.webp" alt="TikTok"></a>
+  </div>
+</footer>
+
+<script>
+const menuItems = [
+  { name: "Caramel Latte", price: 4.50, img: "caramel latte.webp" },
+  { name: "Double Espresso", price: 3.00, img: "Double Espresso.webp" },
+  { name: "Chocolate Mocha", price: 4.75, img: "Chocolate Mocha.webp" },
+  { name: "Vanilla Cold Brew", price: 4.25, img: "Vanilla Cold Brew.webp" },
+  { name: "Iced Latte", price: 4.50, img: "iced latte.webp" },
+  { name: "Butter Croissant", price: 2.50, img: "Butter Croissant.webp" },
+  { name: "Blueberry Muffin", price: 2.75, img: "Blueberry Muffin.webp" }
+];
+
+const menuGrid = document.getElementById('menu-grid');
+const cartBody = document.getElementById('cart-body');
+const totalSpan = document.getElementById('total');
+let cart = {};
+
+function renderMenu() {
+  menuItems.forEach(item => {
+    const div = document.createElement('div');
+    div.classList.add('menu-item');
+    div.innerHTML = `
+      <img src="${item.img}" alt="${item.name}" style="width:100px; height:100px; object-fit:cover; border-radius:8px; margin-bottom:0.5rem;">
+      <h3>${item.name}</h3>
+      <p class="price">$${item.price.toFixed(2)}</p>
+      <button class="btn" onclick="addToCart('${item.name}', ${item.price}, '${item.img}')">Add</button>
+      <button class="btn" onclick="removeFromCart('${item.name}')">Remove</button>
+    `;
+    menuGrid.appendChild(div);
+  });
+}
+
+function addToCart(name, price, img) {
+  if (cart[name]) cart[name].qty += 1;
+  else cart[name] = { price: price, qty: 1, img: img };
+  renderCart();
+}
+
+function removeFromCart(name) {
+  if (cart[name]) {
+    cart[name].qty -= 1;
+    if (cart[name].qty <= 0) delete cart[name];
+    renderCart();
+  }
+}
+
+function updateQuantity(name, value) {
+  const qty = parseInt(value);
+  if (isNaN(qty) || qty <= 0) delete cart[name];
+  else cart[name].qty = qty;
+  renderCart();
+}
+
+function renderCart() {
+  cartBody.innerHTML = '';
+  let total = 0;
+  for (let name in cart) {
+    const item = cart[name];
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td><img src="${item.img}" alt="${name}" onclick="openModal('${item.img}')">${name}</td>
+      <td><input type="number" min="1" value="${item.qty}" style="width:50px; text-align:center;" onchange="updateQuantity('${name}', this.value)"></td>
+      <td>$${item.price.toFixed(2)}</td>
+      <td>$${itemTotal.toFixed(2)}</td>
+      <td><button class="btn" onclick="removeFromCart('${name}')">X</button></td>
+    `;
+    cartBody.appendChild(row);
+  }
+  totalSpan.textContent = total.toFixed(2);
+  localStorage.setItem("orderTotal", total.toFixed(2));
+}
+
+async function placeOrder() {
+  if (Object.keys(cart).length === 0) { alert("Your cart is empty!"); return; }
+
+  const payment = document.querySelector('input[name="payment"]:checked').value;
+  const total = totalSpan.textContent;
+
+  if (payment === "card") {
+    window.location.href = "card-payment.html";
+  } else {
+    const name = prompt("Enter your name for the order:");
+    if (!name) return;
+
+    try {
+      const res = await fetch("http://localhost:3000/payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, amount: total, method: "cash" })
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert(`Cash payment successful!\nTotal: $${total}`);
+        cart = {};
+        renderCart();
+      } else {
+        alert("Payment failed: " + data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Server error: Could not save payment.");
+    }
+  }
+}
+
+function openModal(src) {
+  document.getElementById('modalContent').innerHTML = `<img src="${src}" alt="Item">`;
+  document.getElementById('imgModal').style.display = 'block';
+}
+
+function closeModal() { document.getElementById('imgModal').style.display = 'none'; }
+window.onclick = function(event) { if (event.target === document.getElementById('imgModal')) closeModal(); }
+
+renderMenu();
+renderCart();
+</script>
+</body>
+</html>

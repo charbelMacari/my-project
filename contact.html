@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The GoldenCup | Contact Us</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #fffdf7;
+      color: #3c2f2f;
+    }
+
+    header {
+      background-color: #0f0e0e;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    header nav a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+
+    header nav a:hover { color: #d9a86c; }
+
+    .btn {
+      background-color: #d9a86c;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .btn:hover { background-color: #c38e58; }
+
+    .hero {
+      background: url('contact-banner.webp') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 6rem 1rem;
+    }
+
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; }
+
+    .contact-section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      margin-bottom: 2rem;
+      border-bottom: 2px solid #d9a86c;
+      display: inline-block;
+      padding-bottom: 0.5rem;
+    }
+
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .contact-info, .contact-form {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+      width: 350px;
+    }
+
+    .contact-info h3 { color: #d9a86c; margin-bottom: 1rem; }
+    .contact-info p { margin: 0.5rem 0; font-size: 0.95rem; color: #5a4b4b; }
+
+    form { display: flex; flex-direction: column; gap: 1rem; }
+    input, textarea {
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: 'Poppins', sans-serif;
+    }
+    textarea { resize: vertical; }
+    input:focus, textarea:focus { border-color: #d9a86c; outline: none; }
+
+    footer {
+      background-color: #2d1e1f;
+      color: #fff;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      margin-top: 4rem;
+    }
+
+    footer p { margin: 0.5rem 0; font-size: 0.95rem; }
+
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .social-links a img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #d9a86c;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>☕ The GoldenCup</h2>
+    <nav>
+      <a href="coffee.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="rewards.html">Rewards</a>
+      <a href="contact.html">Contact</a>
+      <a href="order.html" class="btn">Order Now</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Contact Us</h1>
+    <p>We’d love to hear from you! Whether it’s feedback, questions, or coffee talk — reach out anytime.</p>
+  </section>
+
+  <section class="contact-section">
+    <h2>Get in Touch</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Our Café</h3>
+        <p>📍 123 Bean Street, Roast City</p>
+        <p>📞 06/123456</p>
+        <p>📧 hello@thegoldencup.com</p>
+        <p>🕒 Mon–Fri: 7am–12am | Sat–Sun: 8am–2am</p>
+      </div>
+
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <form id="contactForm">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 The GoldenCup | 123 Bean Street, Roast City</p>
+    <p>Follow us</p>
+    <div class="social-links">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><img src="insta.webp" alt="Instagram"></a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><img src="facebook.webp" alt="Facebook"></a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer"><img src="tiktok.webp" alt="TikTok"></a>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value
+      };
+
+      try {
+        const response = await fetch("http://localhost:3000/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          alert("Message sent successfully! ☕");
+          form.reset();
+        } else {
+          alert("Failed to send message. Try again later.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Oops! Could not reach the server.");
+      }
+    });
+  </script>
+</body>
+</html>

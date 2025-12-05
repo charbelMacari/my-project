@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The GoldenCup | Menu</title>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #fffdf7;
+      color: #3c2f2f;
+    }
+
+    header {
+      background-color: #0f0e0e;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: relative;
+    }
+
+    header nav a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+
+    header nav a:hover { color: #d9a86c; }
+
+    /* Hamburger Menu */
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background-color: #2d1e1f;
+        width: 100%;
+        padding: 1rem 0;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        z-index: 100;
+      }
+
+      nav a {
+        margin: 0.7rem 0;
+        display: block;
+        text-align: center;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-open nav {
+        display: flex;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url('menu.webp') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 12rem 2rem;
+      position: relative;
+    }
+
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; }
+
+    @media (max-width: 1199px) {
+      .hero { padding: 8rem 1.5rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1rem; }
+    }
+
+    @media (max-width: 767px) {
+      .hero { padding: 6rem 1rem; background-position: center top; }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 0.9rem; }
+    }
+
+    /* Menu Section */
+    .menu-section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .menu-section h2 {
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #d9a86c;
+      display: inline-block;
+      padding-bottom: 0.5rem;
+    }
+
+    .menu-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .menu-item {
+      background: white;
+      width: 260px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .menu-item:hover { transform: scale(1.03); }
+
+    .menu-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .menu-item h3 { margin: 1rem 0 0.5rem; }
+    .menu-item p { padding: 0 1rem; font-size: 0.9rem; color: #5a4b4b; }
+    .price { font-weight: bold; color: #d9a86c; }
+
+    .btn {
+      background-color: #d9a86c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.6rem 1rem;
+      margin: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover { background-color: #c38e58; }
+
+    /* AI Recommendation */
+    .ai-box {
+      background: #f2e5d5;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      width: 80%;
+      border-radius: 10px;
+      max-width: 700px;
+      text-align: left;
+      font-size: 1rem;
+    }
+
+    .ai-box h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .preference-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .preference-buttons button {
+      background-color: #d9a86c;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .preference-buttons button:hover {
+      background-color: #c38e58;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #2d1e1f;
+      color: #fff;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      margin-top: 4rem;
+    }
+
+    footer p { margin: 0.5rem 0; font-size: 0.95rem; }
+
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .social-links a img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #d9a86c;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <h2>☕ The GoldenCup</h2>
+
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+    <nav>
+      <a href="coffee.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="rewards.html">Rewards</a>
+      <a href="contact.html">Contact</a>
+      <a href="order.html" class="btn">Order Now</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Our Menu</h1>
+    <p>Freshly brewed, locally sourced, and made with love. Explore our selection below.</p>
+  </section>
+
+  <!-- MENU ITEMS (Hot → Cold → Pastries) -->
+  
+  <section class="menu-section" id="hot-drinks">
+    <h2>Hot Drinks</h2>
+    <div class="menu-grid">
+
+      <div class="menu-item">
+        <img src="caramel latte.webp" alt="Latte">
+        <h3>Caramel Latte</h3>
+        <p>Espresso with steamed milk and caramel drizzle.</p>
+        <p class="price">$4.50</p>
+        <a href="order.html" class="btn">Order Now</a>
+      </div>
+
+      <div class="menu-item">
+        <img src="Double Espresso.webp" alt="Espresso">
+        <h3>Double Espresso</h3>
+        <p>Strong and bold, pure espresso perfection.</p>
+        <p class="price">$3.00</p>
+        <a href="order.html" class="btn">Order Now</a>
+      </div>
+
+      <div class="menu-item">
+        <img src="Chocolate Mocha.webp" alt="Mocha">
+        <h3>Chocolate Mocha</h3>
+        <p>Rich cocoa blended with our smooth espresso.</p>
+        <p class="price">$4.75</p>
+        <a href="order.html" class="btn">Order Now</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="menu-section" id="cold-drinks">
+    <h2>Cold Drinks</h2>
+    <div class="menu-grid">
+
+      <div class="menu-item">
+        <img src="Vanilla Cold Brew.webp" alt="Cold Brew">
+        <h3>Vanilla Cold Brew</h3>
+        <p>Slow-steeped coffee with a hint of vanilla sweetness.</p>
+        <p class="price">$4.25</p>
+        <a href="order.html" class="btn">Order Now</a>
+      </div>
+
+      <div class="menu-item">
+        <img src="iced latte.webp" alt="Iced Latte">
+        <h3>Iced Latte</h3>
+        <p>Chilled espresso and milk over ice for smooth refreshment.</p>
+        <p class="price">$4.50</p>
+        <a href="order.html" class="btn">Order Now</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="menu-section" id="pastries">
+    <h2>Pastries</h2>
+    <div class="menu-grid">
+
+      <div class="menu-item">
+        <img src="Butter Croissant.webp" alt="Croissant">
+        <h3>Butter Croissant</h3>
+        <p>Flaky, golden, and baked fresh every morning.</p>
+        <p class="price">$2.50</p>
+        <a href="order.html" class="btn">Order Now</a>
+      </div>
+
+      <div class="menu-item">
+        <img src="Blueberry Muffin.webp" alt="Muffin">
+        <h3>Blueberry Muffin</h3>
+        <p>Soft and bursting with sweet blueberries.</p>
+        <p class="price">$2.75</p>
+        <a href="order.html" class="btn">Order Now</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AI SUGGESTION BOX -->
+  <div class="ai-box">
+    <h3>🤖 GoldCupBot Suggestion</h3>
+    <p>Choose your preference:</p>
+
+    <div class="preference-buttons">
+      <button onclick="showSuggestion('hot')">🔥 Hot</button>
+      <button onclick="showSuggestion('cold')">❄️ Cold</button>
+      <button onclick="showSuggestion('pastries')">🥐 Pastries</button>
+    </div>
+
+    <p id="suggestion" style="margin-top: 1rem; font-weight: bold;">
+      Waiting for your choice...
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 The GoldenCup | 123 Bean Street, Roast City</p>
+    <p>Follow us</p>
+    <div class="social-links">
+      <a href="https://www.instagram.com/" target="_blank"><img src="insta.webp" alt="Instagram"></a>
+      <a href="https://www.facebook.com/" target="_blank"><img src="facebook.webp" alt="Facebook"></a>
+      <a href="https://www.tiktok.com/" target="_blank"><img src="tiktok.webp" alt="TikTok"></a>
+    </div>
+  </footer>
+
+  <!-- JS LOGIC -->
+  <script>
+    function showSuggestion(type) {
+      const suggestionBox = document.getElementById("suggestion");
+      suggestionBox.textContent = "⏳ Thinking...";
+
+      let message = "";
+
+      if (type === "hot") message = "Recommend me a hot drink.";
+      if (type === "cold") message = "Recommend me a cold drink.";
+      if (type === "pastries") message = "Recommend me a pastry.";
+
+      fetch("http://localhost:3000/goldencupbot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (!data.success) {
+            if (data.errorType === "quota") {
+              suggestionBox.textContent =
+                "⚠️ AI unavailable — OpenAI credit is empty.";
+            } else {
+              suggestionBox.textContent = "⚠️ AI error. Try again later.";
+            }
+            return;
+          }
+
+          suggestionBox.textContent = data.reply;
+        })
+        .catch(() => {
+          suggestionBox.textContent = "⚠️ Cannot reach the server.";
+        });
+    }
+
+    function toggleMenu() {
+      document.getElementById("header").classList.toggle("nav-open");
+    }
+  </script>
+
+</body>
+</html>

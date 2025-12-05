@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrewHeaven Coffee | Account Check</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fffdf7;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #3c2f2f;
+    }
+    .box {
+      text-align: center;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 350px;
+    }
+    h2 { margin-bottom: 1.5rem; }
+    button {
+      width: 80%;
+      padding: 0.7rem;
+      margin: 0.5rem 0;
+      background-color: #d9a86c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    button:hover { background-color: #c38e58; }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>Do you have an account?</h2>
+
+    <button onclick="goLogin()">Yes, I have an account</button>
+    <button onclick="goSignup()">No, I need to create one</button>
+  </div>
+
+  <script>
+    function goLogin() {
+      window.location.href = "login.html";
+    }
+    function goSignup() {
+      window.location.href = "signup.html";
+    }
+  </script>
+
+</body>
+</html>

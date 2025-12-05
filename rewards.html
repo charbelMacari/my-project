@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The GoldenCup | Rewards</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #fffdf7;
+      color: #3c2f2f;
+    }
+
+    header {
+      background-color: #0f0e0e;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    header nav a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+
+    header nav a:hover { color: #d9a86c; }
+
+    .btn {
+      background-color: #d9a86c;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .btn:hover { background-color: #c38e58; }
+
+    .hero {
+      background: url('.webp') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 6rem 1rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 0rem;
+    }
+
+    .rewards-section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .rewards-section h2 {
+      margin-bottom: 2rem;
+      border-bottom: 2px solid #d9a86c;
+      display: inline-block;
+      padding-bottom: 0.5rem;
+    }
+
+    .rewards-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .reward-card {
+      background: white;
+      width: 280px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      padding: 1.5rem;
+      transition: transform 0.2s ease;
+    }
+
+    .reward-card:hover { transform: scale(1.03); }
+
+    .reward-card h3 { margin-bottom: 1rem; }
+
+    .reward-card p { color: #5a4b4b; font-size: 0.95rem; }
+
+    footer {
+      background-color: #2d1e1f;
+      color: #fff;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      margin-top: 4rem;
+    }
+
+    footer p { margin: 0.5rem 0; font-size: 0.95rem; }
+
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .social-links a img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #d9a86c;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>☕ The GoldenCup</h2>
+    <nav>
+      <a href="coffee.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="rewards.html">Rewards</a>
+      <a href="contact.html">Contact</a>
+      <a href="order.html" class="btn">Order Now</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>The GoldenCup Rewards</h1>
+    <p>Earn points, unlock perks, and enjoy exclusive GoldenCup benefits.</p>
+  </section>
+
+  <section class="rewards-section">
+    <h2>What You Get</h2>
+    <div class="rewards-grid">
+
+      <div class="reward-card">
+        <h3>🎉 Earn Points</h3>
+        <p>Collect points with every purchase. More coffee = more rewards!</p>
+      </div>
+
+      <div class="reward-card">
+        <h3>🎁 Birthday Offers</h3>
+        <p>Enjoy your Birthday, and get your drink for free on your special day.</p>
+      </div>
+
+      <div class="reward-card">
+        <h3>☕ Free Drinks</h3>
+        <p>Redeem points for free coffees, pastries, or special editions.</p>
+      </div>
+
+      <div class="reward-card">
+        <h3>📬 Email Perks</h3>
+        <p>Stay updated with reward balances, promos, and special events.</p>
+      </div>
+
+      <div class="reward-card">
+        <h3>🎓 Student Offers</h3>
+        <p>Show your ID as a student, and get a 20% discount.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 The GoldenCup | 123 Bean Street, Roast City</p>
+    <p>Follow us</p>
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/" target="_blank"><img src="insta.webp" alt="Instagram"></a>
+      <a href="https://www.facebook.com/" target="_blank"><img src="facebook.webp" alt="Facebook"></a>
+      <a href="https://www.tiktok.com/" target="_blank"><img src="tiktok.webp" alt="TikTok"></a>
+    </div>
+  </footer>
+</body>
+</html>

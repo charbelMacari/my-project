@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The GoldenCup | About</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #fffdf7;
+      color: #3c2f2f;
+    }
+
+    header {
+      background-color: #0f0e0e;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    header nav a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+
+    header nav a:hover { color: #d9a86c; }
+
+    .hero {
+      background: url('about.webp') center/cover no-repeat;
+      color: black;
+      text-align: center;
+      padding: 8rem 1rem;
+    }
+
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+
+    .about-section {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    .about-section h2 {
+      color: #d9a86c;
+      margin-bottom: 1rem;
+    }
+
+    .about-section p { margin-bottom: 1.5rem; }
+
+    .team {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .member {
+      text-align: center;
+      width: 220px;
+    }
+
+    .member img {
+      width: 100%;
+      border-radius: 50%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .member h3 { margin: 0.5rem 0 0; }
+    .member p { font-size: 0.9rem; color: #5a4b4b; }
+
+    .btn {
+      background-color: #d9a86c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.6rem 1rem;
+      margin: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .btn:hover { background-color: #c38e58; }
+
+    footer {
+      background-color: #2d1e1f;
+      color: #fff;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      margin-top: 4rem;
+    }
+
+    footer p { margin: 0.5rem 0; font-size: 0.95rem; }
+
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .social-links a img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #d9a86c;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>☕ The GoldenCup</h2>
+    <nav>
+      <a href="coffee.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="rewards.html">Rewards</a>
+      <a href="contact.html">Contact</a>
+      <a href="order.html" class="btn">Order Now</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>About The GoldenCup</h1>
+    <p>Crafting happiness, one cup at a time ☕</p>
+  </section>
+
+  <section class="about-section">
+    <h2>Our Story</h2>
+    <p>
+      The GoldenCup was founded in 2020 with a simple mission: to bring the
+      finest coffee experience to our community. From sourcing the best beans
+      to perfecting each roast, we believe every cup should feel like a warm hug.
+    </p>
+
+    <h2>Our Mission</h2>
+    <p>
+      We aim to create a welcoming space where coffee lovers can relax, connect,
+      and discover their perfect cup. Sustainability, quality, and passion
+      guide every decision we make.
+    </p>
+
+    <h2>Meet Our Team</h2>
+    <div class="team">
+      <div class="member">
+        <img src="Emma Roast.webp" alt="Founder">
+        <h3>Emma Roast</h3>
+        <p>Founder & Head Barista</p>
+      </div>
+      <div class="member">
+        <img src="manager.webp" alt="Manager">
+        <h3>Liam Beans</h3>
+        <p>Operations Manager</p>
+      </div>
+      <div class="member">
+        <img src="chef.webp" alt="Chef">
+        <h3>Sophia Latte</h3>
+        <p>Pastry Chef</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 The GoldenCup | 123 Bean Street, Roast City</p>
+    <p>Follow us</p>
+    <div class="social-links">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+        <img src="insta.webp" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+        <img src="facebook.webp" alt="Facebook">
+      </a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
+        <img src="tiktok.webp" alt="TikTok">
+      </a>
+    </div>
+  </footer>
+</body>
+</html>

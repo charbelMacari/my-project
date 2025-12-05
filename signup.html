@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup | The GoldenCup</title>
+  <style>
+    
+
+    body { 
+      font-family: 'Poppins', sans-serif; 
+      text-align: center; 
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('im.webp') center/cover no-repeat;
+      position: relative;
+    }
+
+    /* Dark overlay for readability */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4); /* semi-transparent dark overlay */
+      z-index: 1;
+    }
+
+    form { 
+      background: rgba(255, 255, 255, 0.95); 
+      width: 350px; 
+      padding: 2rem;
+      border-radius: 10px; 
+      box-shadow: 0 2px 15px rgba(0,0,0,0.3); 
+      position: relative;
+      z-index: 2;
+    }
+
+    h2 { margin-bottom: 1rem; color: #3c2f2f; }
+
+    input { 
+      width: 90%; 
+      padding: 0.7rem; 
+      margin: 0.5rem 0; 
+      border-radius: 5px; 
+      border: 1px solid #ccc; 
+    }
+
+    button { 
+      width: 95%;
+      padding: 0.8rem 1rem; 
+      background: #d9a86c; 
+      color: #fff; 
+      border: none; 
+      cursor: pointer; 
+      font-weight: 600;
+      margin-top: 1rem;
+      border-radius: 5px;
+    }
+
+    button:hover { background: #c38e58; }
+
+    /* Responsive adjustments */
+    @media (max-width: 400px) {
+      form { width: 90%; padding: 1.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+<form id="signupForm">
+  <h2>Create Account</h2>
+  <input type="text" id="name" placeholder="Full Name" required>
+  <input type="email" id="email" placeholder="Email" required>
+  <input type="password" id="password" placeholder="Password" required>
+  <button type="submit">Sign Up</button>
+</form>
+
+<script>
+document.getElementById("signupForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const user = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value,
+  };
+
+  try {
+    const res = await fetch("http://localhost:3000/signup", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(user)
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert("Account created! You can now log in.");
+      window.location.href = "login.html";
+    } else {
+      alert(data.message);
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Server error. Please try again later.");
+  }
+});
+</script>
+
+</body>
+</html>
